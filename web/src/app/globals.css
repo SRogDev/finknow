@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Finkow — dark OLED fintech dashboard. Gold (#F59E0B) is the brand accent. */
+  --color-background: #020617;
+  --color-card: #0e1223;
+  --color-muted: #1a1e2f;
+  --color-foreground: #f8fafc;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #334155;
+  --color-accent: #f59e0b;
+  --color-on-accent: #0f172a;
+  --color-success: #22c55e;
+  --color-destructive: #ef4444;
+  --color-ring: #f59e0b;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible focus state for keyboard navigation (gold ring). */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Number tabular alignment for money columns. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: !important is required so the reduced-motion override beats component transition utilities. */
+    animation-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: see above. */
+    transition-duration: 0.01ms !important;
+  }
+}

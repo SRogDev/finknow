@@ -15,12 +15,17 @@
 
 ## Phase 1 — Sandbox core (MVP)
 
-- [ ] Supabase schema: users, sandbox_accounts, positions, transactions, portfolio_snapshots
-- [ ] FastAPI: `create_account`, `get_quote(symbol)`, `buy`/`sell` (virtual), `get_portfolio`, `get_history`
-- [ ] Market data providers: stocks + crypto, with caching; graceful degradation when offline
-- [ ] Next.js: dashboard (portfolio, positions, allocation), asset inspector, buy/sell UI
-- [ ] Virtual cash: $100,000 on signup; transaction ledger; portfolio valuation over time
-- [ ] Tests: financial math (P&L, allocation, returns) — pytest, no float-money bugs
+- [x] Supabase schema: users, sandbox_accounts, positions, transactions, portfolio_snapshots (`supabase/schema.sql`)
+- [x] FastAPI: `create_account`, `get_quote(symbol)`, `buy`/`sell` (virtual), `get_portfolio`, `get_history` (`api/`, 30 pytest tests green: 27 domain/API + 3 CORS)
+- [x] Market data providers: stocks + crypto, with caching; graceful degradation when offline (Stooq → Yahoo fallback for stocks, CoinGecko for crypto; stale-cache serving; 503 only with nothing cached)
+- [x] Next.js: dashboard (portfolio, positions, allocation), asset inspector, buy/sell UI (`web/`; `npm run build` + `npx biome check src` + 10 TS unit tests green). Browser calls the API directly → CORS middleware added on the backend (default `localhost:3000`/`127.0.0.1:3000`, overridable via `FINKOW_CORS_ORIGINS`).
+- [x] Virtual cash: $100,000 on signup; transaction ledger; portfolio valuation over time
+- [x] Tests: financial math (P&L, allocation, returns) — pytest, no float-money bugs (Decimal everywhere)
+- [x] AI skeleton: `POST /api/ai/explain` grounded stub (deterministic summary from real portfolio; OpenRouter rephrase optional via `OPENROUTER_API_KEY`). Full conversational interface is Phase 2.
+
+> **CI note:** `.github/workflows/` files cannot be pushed via the API (stored token
+> lacks the `workflows` scope). Add `ci.yml` (pytest + ruff + next build + biome)
+> from a local `git push` with a full-scope token — do not attempt via `push_repo.py`.
 
 ## Phase 2 — AI interface
 
@@ -41,5 +46,6 @@ curriculum-style lessons, advertising.
 
 ## Open questions (for Roger)
 
-- [ ] Product name spelling: **Finkow** (doc) vs **finknow** (repo)?
-- [ ] Confirm MIT license for finknow?
+- [x] Product name spelling: **Finkow** — resolved 2026-09-26. Repo renamed `SRogDev/finknow` → `SRogDev/finkow`.
+- [x] Confirm MIT license for Finkow? — resolved 2026-09-26: MIT is a confirmed
+  decision above and `LICENSE` (MIT) is committed.

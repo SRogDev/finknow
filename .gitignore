@@ -1,0 +1,19 @@
+# Finkow — root ignores (per-project .gitignore files add their own details)
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+api/.venv/
+
+# Node / Next.js
+web/node_modules/
+web/.next/
+web/out/
+
+# Env files — commit only safe examples, never real secrets
+.env*
+
+# Misc
+.DS_Store
+*.tsbuildinfo

@@ -31,4 +31,4 @@ Early build — see [PLAN.md](PLAN.md), spec in [docs/product-context.md](docs/p
 
 ## License
 
-MIT (to confirm)
+MIT
