@@ -2,7 +2,21 @@
 
 > MVP target: functional in days. Each phase ships something usable.
 
-## Proposed stack (to confirm)
+## Confirmed decisions (2026-09-26)
+
+- **Stack**: Next.js full stack (API routes — no separate backend)
+- **Integrations**: everything possible — banks (Plaid via Composio), **crypto**, brokerages
+- **Language**: English-first
+- **AI actions**: ⏸️ waiting for Roger's conversations — will extract features from them
+
+## Confirmed decisions (2026-09-26)
+
+- **Stack**: Next.js full stack (App Router + API routes), Supabase (Postgres + Auth), OpenRouter for AI, Composio for integrations, Alpaca for investing (paper trading first)
+- **Integrations**: all of them — banks, crypto, brokerages
+- **Language**: English-first
+- **AI actions**: ⏸️ waiting for Roger's conversations — features to be extracted from them
+
+## Proposed stack
 
 - **App**: Next.js (App Router) + Tailwind + shadcn/ui
 - **DB/Auth**: Supabase (Postgres + Auth)
