@@ -1,27 +1,34 @@
-# finknow
+# Finkow
 
-**Open-source AI finance harness.** All your money in one place — with an AI that guides you, teaches you, and surfaces opportunities you didn't know existed.
+**Open-source AI-native financial learning sandbox.** Learn finance by interacting
+with a realistic financial world — not by taking courses.
 
-Think of it as a finance-only copilot: not a bank, not a broker — the intelligence layer over all of them.
+> Explore → Ask → Simulate → Act → Observe → Understand → Learn → Explore again
 
-## Core ideas
+## What it is
 
-1. **Unified money view** — bank accounts, investments, crypto in one dashboard, via integrations (Composio).
-2. **AI that teaches** — explains what's happening with your money in plain language and helps you build financial intuition.
-3. **AI that finds opportunities** — idle cash, expensive fees, better yields, rebalancing — surfaced proactively.
-4. **AI that can act** — within permissions *you* grant, the AI can move and invest your money (brokerage APIs like Alpaca for stocks). Every action is permissioned, logged, and reversible where possible. Read-only by default; nothing moves without your explicit approval model.
+- **Virtual-money sandbox** with **real market data** (stocks, ETFs, crypto…): buy, sell,
+  build portfolios, watch real markets move your positions.
+- **AI as the primary interface**: ask what happened, why it happened, what-if
+  scenarios, opportunity discovery — the AI calls structured financial operations,
+  never touches raw state.
+- **Contextual learning**: concepts arrive inside your own activity, not lessons.
+- **Future**: AI-operated actions and real-money mode — explicitly post-MVP.
 
-## Principles
+## What it is not
 
-- Open source (MIT) — built in the open, contributions welcome.
-- Functional in days, not months: ruthless MVP scoping.
-- Your money, your permissions: the AI never acts outside what you granted.
-- Honest numbers: every recommendation shows its reasoning and data.
+Budgeting, expense tracking, or household finance. This is about **investing,
+wealth creation, and financial intuition through doing**.
+
+## Stack
+
+Next.js → FastAPI (financial domain logic) → Supabase → OpenRouter.
+Brand: gold `#F59E0B`, Swiss-minimalist.
 
 ## Status
 
-Early scaffold — see [PLAN.md](PLAN.md). Brand: gold (`#F59E0B`) on deep dark, Swiss-minimalist.
+Early build — see [PLAN.md](PLAN.md), spec in [docs/product-context.md](docs/product-context.md).
 
 ## License
 
-MIT
+MIT (to confirm)

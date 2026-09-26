@@ -1,57 +1,45 @@
-# finknow — Build Plan
+# Finkow — Build Plan
 
-> MVP target: functional in days. Each phase ships something usable.
-
-## Confirmed decisions (2026-09-26)
-
-- **Stack**: Next.js full stack (API routes — no separate backend)
-- **Integrations**: everything possible — banks (Plaid via Composio), **crypto**, brokerages
-- **Language**: English-first
-- **AI actions**: ⏸️ waiting for Roger's conversations — will extract features from them
+> Spec: `docs/product-context.md`. Stack: Next.js + FastAPI + Supabase + OpenRouter.
+> MVP proves: "Can a person develop financial intuition by interacting with a realistic financial sandbox through AI?"
 
 ## Confirmed decisions (2026-09-26)
 
-- **Stack**: Next.js full stack (App Router + API routes), Supabase (Postgres + Auth), OpenRouter for AI, Composio for integrations, Alpaca for investing (paper trading first)
-- **Integrations**: all of them — banks, crypto, brokerages
+- **Architecture**: Next.js frontend → **FastAPI backend** (financial domain logic) → Supabase (Postgres + Auth)
+- **AI**: OpenRouter; AI calls **structured financial operations**, never mutates DB directly
+- **Market data**: real data, keyless providers first (e.g. Stooq for stocks, CoinGecko for crypto) behind a provider abstraction; Alpaca paper-trading later
+- **Money**: 100% virtual in MVP. Real-money mode is a future phase.
 - **Language**: English-first
-- **AI actions**: ⏸️ waiting for Roger's conversations — features to be extracted from them
+- **License**: MIT (open source)
+- **Brand**: gold `#F59E0B` on deep dark, Swiss-minimalist (see ui-ux-pro-max design system)
 
-## Proposed stack
+## Phase 1 — Sandbox core (MVP)
 
-- **App**: Next.js (App Router) + Tailwind + shadcn/ui
-- **DB/Auth**: Supabase (Postgres + Auth)
-- **AI**: OpenRouter (mid-tier models; finance reasoning doesn't need the frontier)
-- **Integrations**: Composio (bank/broker/crypto connections)
-- **Investing**: Alpaca (stocks, paper trading first) — Stripe is for payments, not investing
-- **Design**: Swiss-minimalist, gold `#F59E0B` on deep dark (`#0F172A`)
+- [ ] Supabase schema: users, sandbox_accounts, positions, transactions, portfolio_snapshots
+- [ ] FastAPI: `create_account`, `get_quote(symbol)`, `buy`/`sell` (virtual), `get_portfolio`, `get_history`
+- [ ] Market data providers: stocks + crypto, with caching; graceful degradation when offline
+- [ ] Next.js: dashboard (portfolio, positions, allocation), asset inspector, buy/sell UI
+- [ ] Virtual cash: $100,000 on signup; transaction ledger; portfolio valuation over time
+- [ ] Tests: financial math (P&L, allocation, returns) — pytest, no float-money bugs
 
-## Phase 1 — See your money (days 1–3)
+## Phase 2 — AI interface
 
-- Auth + workspace (Supabase)
-- Connect first account via Composio (Plaid for banks — to confirm)
-- Unified dashboard: balances, accounts, simple net-worth view
-- Manual account/asset entry as fallback
+- [ ] OpenRouter chat wired to structured ops (get_portfolio, get_quote, simulate, explain)
+- [ ] "What happened?" — AI explains portfolio changes from real market movement
+- [ ] "What if I invest X?" — simulation without executing
+- [ ] Contextual teaching: concepts explained from the user's own actions
 
-## Phase 2 — AI guide (days 4–6)
+## Phase 3 — Opportunities + scenarios (post-MVP)
 
-- "Explain my money": AI summary of accounts, cash flow, fees
-- Opportunity scanner (rules first): idle cash, high fees, yield gaps
-- Teach mode: every insight links to a plain-language explanation
+- [ ] Opportunity scanner (rules first, AI explanation)
+- [ ] Scenario engine: crash, inflation, boom, rate shock…
 
-## Phase 3 — AI actions with permissions (week 2)
+## Explicitly NOT in MVP
 
-- Permission model: read-only → suggest → act-with-approval → autonomous (per-action caps)
-- Paper-trading sandbox via Alpaca (prove it before real money)
-- Real investing behind explicit per-action approval + full audit log
+Real-money accounts, real execution, compliance infra, every instrument/exchange,
+curriculum-style lessons, advertising.
 
 ## Open questions (for Roger)
 
-- [ ] Bank connections: Plaid via Composio, or which first?
-- [ ] Crypto in v1 or later?
-- [ ] Language: English-first like Agentropy?
-- [ ] Monetization of hosted version (Polar subscriptions?) or pure OSS?
-- [ ] Which AI actions should exist in v1 (rebalance? sweep idle cash?)?
-
-## Non-goals for MVP
-
-- Tax optimization engine, multi-currency accounting, mobile app.
+- [ ] Product name spelling: **Finkow** (doc) vs **finknow** (repo)?
+- [ ] Confirm MIT license for finknow?
