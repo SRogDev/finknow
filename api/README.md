@@ -19,10 +19,10 @@ api/
 ## Run
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install fastapi "uvicorn[standard]" httpx pytest ruff
-.venv/bin/python -m pytest            # 25 tests
-.venv/bin/ruff check app tests        # lint
-.venv/bin/uvicorn app.main:app --reload --port 8000
+uv venv && uv sync                      # creates .venv, installs deps + dev tools
+uv run pytest                           # 25 tests
+uv run ruff check app tests             # lint
+uv run uvicorn app.main:app --reload --port 8000
 ```
 
 The frontend calls the API directly from the browser, so the server emits
